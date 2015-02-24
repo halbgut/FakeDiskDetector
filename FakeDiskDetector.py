@@ -31,7 +31,8 @@ class FakeDiskDetector:
       sys.exit()
 
   def writeThisToThatFile (self, fileSize, file):
-    file.write(''.join(self.oneMBArray))
+    for x in range(0, fileSize):
+      file.write(''.join(self.oneMBArray))
 
 if __name__ == '__main__' :
   main(sys.argv)
