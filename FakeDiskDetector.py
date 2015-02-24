@@ -4,7 +4,7 @@ import os.path
 def main(arguments) :
 
   if len(arguments) < 3:
-    print 'Expecting a two arguments: filePath fileLength'
+    print 'Expecting a two arguments: filePath fileLength\a'
     sys.exit()
 
   fileOrFolderToWriteTo = arguments[1]
@@ -40,7 +40,7 @@ class FakeDiskDetector:
         sys.stdout.write('\r' + str(x) + ' of ' + str(fileSize) + ' written.')
         sys.stdout.flush()
       except:
-        print 'Failed at ' + str(x) + ' MegaByte'
+        print 'Failed at ' + str(x) + ' MegaByte \a'
         sys.exit()
 
 if __name__ == '__main__' :
