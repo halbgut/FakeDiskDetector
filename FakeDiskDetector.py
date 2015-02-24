@@ -13,7 +13,7 @@ def main(arguments) :
 
 class FakeDiskDetector:
   def __init__ (self, fileOrFolderToWriteTo, fileSizeToWrite) :
-    self.oneMBArray = ['1'] * 1000000 # Not exactly
+    self.oneMBArray = ['1'] * 1023541 # Pertty much exactly
 
     self.fileSizeToWrite = int(fileSizeToWrite)
     self.filePathToWriteTo = self.getFileToWriteTo(fileOrFolderToWriteTo)
