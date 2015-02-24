@@ -31,8 +31,17 @@ class FakeDiskDetector:
       sys.exit()
 
   def writeThisToThatFile (self, fileSize, file):
+    sys.stdout.write('Writing ' + str(fileSize) + 'MB file to ' + self.filePathToWriteTo + '.\n')
+    sys.stdout.write('0 of ' + str(fileSize) + ' written.')
+    sys.stdout.flush()
     for x in range(0, fileSize):
-      file.write(''.join(self.oneMBArray))
+      try:
+        file.write(''.join(self.oneMBArray))
+        sys.stdout.write('\r' + str(x) + ' of ' + str(fileSize) + ' written.')
+        sys.stdout.flush()
+      except:
+        print 'Failed at ' + str(x) + ' MegaByte'
+        sys.exit()
 
 if __name__ == '__main__' :
   main(sys.argv)
