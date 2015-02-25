@@ -4,7 +4,7 @@ import os.path
 def main(arguments) :
 
   if len(arguments) < 3:
-    print 'Expecting a two arguments: filePath fileLength\a'
+    print('Expecting a two arguments: filePath fileLength\a')
     sys.exit()
 
   fileOrFolderToWriteTo = arguments[1]
@@ -27,7 +27,7 @@ class FakeDiskDetector:
     elif os.path.isfile(path):
       return path
     else:
-      print 'No such file or directory'
+      print('No such file or directory')
       sys.exit()
 
   def writeThisToThatFile (self, fileSize, writeTo):
@@ -42,12 +42,12 @@ class FakeDiskDetector:
           sys.stdout.flush()
       except:
         writeTo.close()
-        print ''
-        print sys.exc_info()[0]
-        print 'Failed at ' + str(x) + ' MegaByte \a'
+        print('')
+        print(sys.exc_info()[0])
+        print('Failed at ' + str(x) + ' MegaByte \a')
         sys.exit()
     sys.stdout.write('\r' + str(fileSize) + ' of ' + str(fileSize) + ' written.\n')
-    print 'Worked like a charm, ur drive\'s fine!!!!\a'
+    print('Worked like a charm, ur drive\'s fine!!!!\a')
     sys.exit()
 
 if __name__ == '__main__' :
