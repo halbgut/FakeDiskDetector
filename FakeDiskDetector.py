@@ -13,7 +13,7 @@ def main(arguments) :
 
 class FakeDiskDetector:
   def __init__ (self, fileOrFolderToWriteTo, fileSizeToWrite) :
-    self.oneMBArray = ['1'] * 1023541 # Pertty much exactly
+    self.oneMBData = '\x00' * 1000000 # Pertty much exactly
 
     self.fileSizeToWrite = int(fileSizeToWrite)
     self.filePathToWriteTo = self.getFileToWriteTo(fileOrFolderToWriteTo)
@@ -23,7 +23,7 @@ class FakeDiskDetector:
   def getFileToWriteTo (self, path) :
     path = os.path.abspath(path)
     if os.path.isdir(path):
-      return path + '/FakeDiskDetector.txt'
+      return path + '/FakeDiskDetector.bin'
     elif os.path.isfile(path):
       return path
     else:
@@ -36,15 +36,19 @@ class FakeDiskDetector:
     sys.stdout.flush()
     for x in range(0, fileSize):
       try:
-        writeTo.write(''.join(self.oneMBArray))
-        sys.stdout.write('\r' + str(x) + ' of ' + str(fileSize) + ' written.')
-        sys.stdout.flush()
+        writeTo.write(self.oneMBData)
+        if x % 10 == 0:
+          sys.stdout.write('\r' + str(x) + ' of ' + str(fileSize) + ' written.')
+          sys.stdout.flush()
       except:
         writeTo.close()
         print ''
         print sys.exc_info()[0]
         print 'Failed at ' + str(x) + ' MegaByte \a'
         sys.exit()
+    sys.stdout.write('\r' + str(fileSize) + ' of ' + str(fileSize) + ' written.\n')
+    print 'Worked like a charm, ur drive\'s fine!!!!\a'
+    sys.exit()
 
 if __name__ == '__main__' :
   main(sys.argv)
